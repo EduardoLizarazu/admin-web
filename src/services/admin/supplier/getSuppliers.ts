@@ -1,12 +1,12 @@
 import Consumer from 'app/app/admin/consumer/page';
 import firebase_app from '../../../firebase/config';
-import { ConsumerModel } from '../../../models/users/consumer';
+import { SupplierModel } from '../../../models/users/supplier';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 const consumerCollection = "user";
 
-export const getConsumers = async () => {
+export const getSuppliers = async () => {
     const collectionRef = collection(db, consumerCollection);
     const snapshot = await getDocs(collectionRef);
     const documents = snapshot.docs.map(doc => {
@@ -18,27 +18,39 @@ export const getConsumers = async () => {
             profilePhotoURL, 
             phoneNumber,  
             condominium,
-            userCategory, 
+            userCategory,
+            companyName,
+            companyOffers,
+            companyPhone,
+            licenseType,
+            nit,
         } = doc.data();
 
-        return new ConsumerModel({
+        const suppliersModel = new SupplierModel({
             id: userId,
             name: name,
             lastName: lastName,
-            email: "example@gmail.com",
+            email: doc.id,
             registerDate: new Date(),
             phone: phoneNumber,
             birthDate: new Date(),
             profilePicture: profilePhotoURL,
-            apartmentNumber: apartmentNumber,
-            condominium : condominium,
+            nit: nit,
+            companyName: companyName,
+            companyAddress: "",
+            companyPhone: companyPhone,
+            companyManagerEmail: "",
+            licenseType: licenseType,
+            certificateType: "",
+            companyOffers: ["FALTA"],
             userCategory: userCategory
         });
+
+        return suppliersModel;
     });
 
-    const consumers = documents.filter(
-        (consumer) => consumer.userCategory !== "Habitante");
+    const suppliers = documents.filter((supplier) => supplier.userCategory !== "Proveedor")
 
-    return consumers;
+    return suppliers;
 }
 

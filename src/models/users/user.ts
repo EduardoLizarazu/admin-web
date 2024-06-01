@@ -7,4 +7,5 @@ interface IUser {
     phone: string;
     birthDate: Date;
     profilePicture: string;
+    userCategory: string;
 }

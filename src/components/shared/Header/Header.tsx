@@ -28,6 +28,7 @@ export const Header = () => {
                     <Link href="/admin/dashboard" className="hover:bg-gray-700 p-2 rounded">Dashboard</Link>
                     <Link href="/admin/supplier" className="hover:bg-gray-700 p-2 rounded">Proveedor</Link>
                     <Link href="/admin/consumer" className="hover:bg-gray-700 p-2 rounded">Consumidor</Link>
+                    <Link href="/admin/supplier-request" className="hover:bg-gray-700 p-2 rounded">Solicitudes</Link>
                 </nav>
             </div>
             {/* Menú móvil
