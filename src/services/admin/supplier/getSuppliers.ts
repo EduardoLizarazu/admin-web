@@ -30,7 +30,7 @@ export const getSuppliers = async () => {
             id: userId,
             name: name,
             lastName: lastName,
-            email: doc.id,
+            email: "@falta",
             registerDate: new Date(),
             phone: phoneNumber,
             birthDate: new Date(),
