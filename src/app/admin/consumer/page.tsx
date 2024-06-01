@@ -1,10 +1,17 @@
-export default function Consumer() {
-  // Datos ficticios para la tabla
-  const consumers = [
-    { id: 1, name: 'John Doe', age: 30, email: 'john@example.com', status: 'Active' },
-    { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com', status: 'Inactive' },
-    { id: 3, name: 'William Johnson', age: 35, email: 'william@example.com', status: 'Active' }
-];
+import { getConsumers } from "app/services/admin/consumer/getConsumers";
+
+export default async function Consumer() {
+
+    const consumers2 = await getConsumers(); 
+    console.log(consumers2);
+    
+
+    // Datos ficticios para la tabla
+    const consumers = [
+        { id: 1, name: 'John Doe', age: 30, email: 'john@example.com', status: 'Active' },
+        { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com', status: 'Inactive' },
+        { id: 3, name: 'William Johnson', age: 35, email: 'william@example.com', status: 'Active' }
+    ];
     return(
       <div className="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main className="w-full flex-grow p-6">

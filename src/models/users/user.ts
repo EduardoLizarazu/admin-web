@@ -1,9 +1,8 @@
 interface IUser {
-    id: number;
+    id: string;
     name: string;
     lastName: string;
     email: string;
-    password: string;
     registerDate: Date;
     address: string;
     phone: string;
