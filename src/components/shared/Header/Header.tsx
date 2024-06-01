@@ -1,43 +1,44 @@
 import Link from 'next/link'
 
 export const Header = () => {
-  // classNameName
-  return (
-    <aside className="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
-      <div className="p-6">
-        <Link 
-            href="/"
-            className="text-white text-3xl font-semibold uppercase hover:text-gray-300"
-        >
-            Administrador
-        </Link>
-        <button className="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-          <i className="fas fa-plus mr-3"></i> New Report
-        </button>
-      </div>
-      <nav className="text-white text-base font-semibold pt-3">
-        <Link 
-            href="/consumer" 
-            className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-            >
-            <i className="fas fa-tachometer-alt mr-3"></i>
-            Dashboard
-        </Link>
-        <Link 
-            href="/consumer" 
-            className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"
-            >
-            <i className="fas fa-tachometer-alt mr-3"></i>
-            Consumidores
-        </Link>
-        <Link
-          href="/supplier"
-          className="flex items-center active-nav-link text-white py-4 pl-6 nav-item"
-        >
-          <i className="fas fa-sticky-note mr-3"></i>
-          Proveedores
-        </Link>
-      </nav>
-    </aside>
-  );
+
+    return (
+        <header className="bg-gray-800 text-white p-4">
+            <div className="container mx-auto flex justify-between items-center">
+                <h1 className="text-lg md:text-2xl font-bold">Sergis Admin</h1>
+                {/* Botón de menú para dispositivos móviles */}
+                {/* <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white outline-none">
+                    <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M4 6h16M4 12h16m-7 6h7"
+                        />
+                    </svg>
+                </button> */}
+                {/* Enlaces del menú para escritorio */}
+                <nav className="hidden md:flex space-x-10">
+                    <Link href="/admin/dashboard" className="hover:bg-gray-700 p-2 rounded">Dashboard</Link>
+                    <Link href="/admin/supplier" className="hover:bg-gray-700 p-2 rounded">Proveedor</Link>
+                    <Link href="/admin/consumer" className="hover:bg-gray-700 p-2 rounded">Consumidor</Link>
+                </nav>
+            </div>
+            {/* Menú móvil
+            <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
+                <ul>
+                    <li><a href="#" className="block text-sm px-4 py-2 hover:bg-gray-700 transition duration-300">Home</a></li>
+                    <li><a href="#" className="block text-sm px-4 py-2 hover:bg-gray-700 transition duration-300">Services</a></li>
+                    <li><a href="#" className="block text-sm px-4 py-2 hover:bg-gray-700 transition duration-300">About</a></li>
+                    <li><a href="#" className="block text-sm px-4 py-2 hover:bg-gray-700 transition duration-300">Contact</a></li>
+                </ul>
+            </div> */}
+        </header>
+    );
 };
