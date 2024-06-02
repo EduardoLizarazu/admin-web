@@ -49,4 +49,26 @@ export class SupplierModel implements ISupplier {
         this.certificateType = supplier.certificateType;
         this.companyOffers = supplier.companyOffers;
     }
+
+    toPlainObject() {
+        return {
+            id: this.id,
+            name: this.name,
+            lastName: this.lastName,
+            email: this.email,
+            registerDate: this.registerDate.toISOString(),
+            phone: this.phone,
+            birthDate: this.birthDate.toISOString(),
+            userCategory: this.userCategory,
+            profilePicture: this.profilePicture,
+            nit: this.nit,
+            companyName: this.companyName,
+            companyAddress: this.companyAddress,
+            companyPhone: this.companyPhone,
+            companyManagerEmail: this.companyManagerEmail,
+            licenseType: this.licenseType,
+            certificateType: this.certificateType,
+            companyOffers: this.companyOffers
+        };
+    }
 }

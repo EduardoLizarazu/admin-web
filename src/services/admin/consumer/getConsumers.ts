@@ -1,6 +1,5 @@
-import Consumer from 'app/app/admin/consumer/page';
 import firebase_app from '../../../firebase/config';
-import { ConsumerModel } from '../../../models/users/consumer';
+import { ConsumerModel } from '../../../entities/consumer';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
