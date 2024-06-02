@@ -1,4 +1,4 @@
-import Consumer from 'app/app/admin/consumer/page';
+import Consumer from 'app/app/consumer/page';
 import firebase_app from '../../../firebase/config';
 import { SupplierModel } from '../../../entities/supplier';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
