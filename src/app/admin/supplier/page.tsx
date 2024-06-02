@@ -7,11 +7,6 @@ export default async function Supplier() {
 
   const plainSuppliers = suppliers.map((supplier) => supplier.toPlainObject());
 
-  const acceptRequest = (id: string) => {
-    // Code to accept request
-    
-  }
-
   return (
     <div className="w-full h-screen overflow-x-hidden border-t flex flex-col">
       <div className="w-full flex-grow p-6">

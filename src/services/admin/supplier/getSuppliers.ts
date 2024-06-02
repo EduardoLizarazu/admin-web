@@ -1,6 +1,6 @@
 import Consumer from 'app/app/admin/consumer/page';
 import firebase_app from '../../../firebase/config';
-import { SupplierModel } from '../../../models/users/supplier';
+import { SupplierModel } from '../../../entities/supplier';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
@@ -49,7 +49,7 @@ export const getSuppliers = async () => {
         return suppliersModel;
     });
 
-    const suppliers = documents.filter((supplier) => supplier.userCategory !== "Proveedor")
+    const suppliers = documents.filter((supplier) => supplier.userCategory === "Proveedor")
 
     return suppliers;
 }

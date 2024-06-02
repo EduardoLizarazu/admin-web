@@ -1,4 +1,5 @@
 "use client";
+import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
 import Link from "next/link";
 
 
@@ -26,12 +27,19 @@ interface UserTableProps {
   suppliers: SupplierPlainObject[];
 }
 
+enum Status {
+  PENDING = 0,
+  ACCEPTED = 1,
+  REJECTED = 2,
+}
 
 export default function UserTable(params: UserTableProps) {
   const suppliers  = params.suppliers;
 
-  const acceptRequest = async (id: string) => {
-    
+  
+
+  const acceptRequest = async (id: string, status: number) => {
+    await updateStatusRq(id, status);
   }
 
   return (
@@ -71,7 +79,7 @@ export default function UserTable(params: UserTableProps) {
               <td className="w-1/3 text-left py-3 px-4">{supplier.email}</td>
               <td className="w-1/3 text-left py-3 px-4">
                 <button
-                  onClick={() => acceptRequest(supplier.id)}
+                  onClick={() => acceptRequest(supplier.id, Status.ACCEPTED)}
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 >
                   Aceptar

@@ -36,7 +36,7 @@ export const getConsumers = async () => {
     });
 
     const consumers = documents.filter(
-        (consumer) => consumer.userCategory !== "Habitante");
+        (consumer) => consumer.userCategory === "Habitante");
 
     return consumers;
 }
