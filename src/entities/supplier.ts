@@ -6,6 +6,7 @@ interface ISupplier extends IUser {
     companyManagerEmail: string;
     licenseType : string;
     certificateType : string;
+    requestStatus: number;
     companyOffers: string[];
 }
 
@@ -26,6 +27,7 @@ export class SupplierModel implements ISupplier {
     companyManagerEmail: string;
     licenseType : string;
     certificateType : string;
+    requestStatus: number;
     companyOffers: string[];
 
     constructor (
@@ -48,6 +50,7 @@ export class SupplierModel implements ISupplier {
         this.licenseType = supplier.licenseType;
         this.certificateType = supplier.certificateType;
         this.companyOffers = supplier.companyOffers;
+        this.requestStatus = supplier.requestStatus;
     }
 
     toPlainObject() {
@@ -68,7 +71,8 @@ export class SupplierModel implements ISupplier {
             companyManagerEmail: this.companyManagerEmail,
             licenseType: this.licenseType,
             certificateType: this.certificateType,
-            companyOffers: this.companyOffers
+            companyOffers: this.companyOffers,
+            requestStatus: this.requestStatus
         };
     }
 }

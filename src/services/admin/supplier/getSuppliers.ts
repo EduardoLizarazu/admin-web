@@ -24,6 +24,7 @@ export const getSuppliers = async () => {
             companyPhone,
             licenseType,
             nit,
+            requestStatus
         } = doc.data();
 
         const suppliersModel = new SupplierModel({
@@ -43,7 +44,8 @@ export const getSuppliers = async () => {
             licenseType: licenseType,
             certificateType: "",
             companyOffers: ["FALTA"],
-            userCategory: userCategory
+            userCategory: userCategory,
+            requestStatus: requestStatus,
         });
 
         return suppliersModel;
