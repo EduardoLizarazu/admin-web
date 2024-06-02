@@ -6,9 +6,13 @@ const db = getFirestore(firebase_app);
 const consumerCollection = "user";
 
 export const updateStatusRq = async (id:string, statusRq:number) => {
-    const updateUserStatus = updateDoc(doc(db, consumerCollection, id), {
-        requestStatus: statusRq
-    });
-    console.log(updateUserStatus);
-    return updateUserStatus;
+    try {
+        const updateUserStatus = await updateDoc(doc(db, consumerCollection, id), {
+            requestStatus: statusRq
+        });
+        return { status : true }
+    } catch (error) {
+        console.error("Error updating status:", error);
+        return { status : false }
+    }
 }
