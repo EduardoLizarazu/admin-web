@@ -1,6 +1,7 @@
 import { getSuppliers } from "app/services/admin/supplier/getSuppliers";
 import Link from "next/link";
 import UserTable from "./userTable";
+import MyTable from "../../components/table";
 
 export default async function Supplier() {
   const suppliers = await getSuppliers();
@@ -18,7 +19,8 @@ export default async function Supplier() {
           </p>
           <div className="bg-white overflow-auto rounded-lg">
             {/* TABLE */}
-            <UserTable suppliers={plainSuppliers} />
+            {/* <UserTable suppliers={plainSuppliers} /> */}
+            <MyTable suppliers={plainSuppliers} />
           </div>
         </div>
       </div>
