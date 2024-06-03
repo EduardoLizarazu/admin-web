@@ -114,15 +114,14 @@ export default function MyTable(props : UserTableProps) {
                 </span>
               </Link>
             </Tooltip>
-            <Tooltip color="success" content="Aceptar proveedor">
+            <Tooltip color="success" content="Aceptar usuario">
               <span className="text-lg text-success cursor-pointer active:opacity-50">
-                {/* <EditIcon /> */}
-                <CheckIcon />
+                <CheckIcon onClick={() => acceptRequest(user.id)} />
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Delete user">
+            <Tooltip color="danger" content="Rechazar usuario">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
+                <DeleteIcon onClick={() => rejectRequest(user.id)} />
               </span>
             </Tooltip>
           </div>
