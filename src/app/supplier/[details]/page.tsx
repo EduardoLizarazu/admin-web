@@ -2,6 +2,7 @@
 import { getSupplier } from "app/services/admin/supplier/getSuppliers";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import ProductCard from "./product";
 
 interface Params {
   details: string;
@@ -109,6 +110,9 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
             <strong>Offers:</strong> {supplier.companyOffers.join(", ")}
           </p>
         </div>
+      </div>
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <ProductCard />
       </div>
     </div>
   );
