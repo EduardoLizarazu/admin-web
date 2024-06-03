@@ -5,6 +5,9 @@ import {EditIcon} from "app/components/editIcon";
 import {DeleteIcon} from "app/components/deleteIcon";
 import {EyeIcon} from "app/components/eyeIcon";
 import {columns, users} from "app/utils/data";
+import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
+import Link from "next/link";
+import { CheckIcon } from "./checkIcon";
 
 ////// This is the code that you need to modify //////
 
@@ -44,25 +47,43 @@ enum Status {
 
 
 const statusColorMap: Record<string, ChipProps["color"]>  = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+  1: "success",
+  2: "danger",
+  0: "warning",
 };
 
 type User = typeof users[0];
 
 export default function MyTable(props : UserTableProps) {
-
   const suppliers : SupplierPlainObject[] = props.suppliers;
 
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User];
+  const acceptRequest = async (id: string) =>
+    await updateStatusRq(id, Status.ACCEPTED);
 
+  const rejectRequest = async (id: string) =>
+    await updateStatusRq(id, Status.REJECTED);
+
+  const transformStatusRqToText = (status: number) => {
+    switch (status) {
+      case Status.PENDING:
+        return "Pendiente";
+      case Status.ACCEPTED:
+        return "Aceptado";
+      case Status.REJECTED:
+        return "Rechazado";
+      default:
+        return "Desconocido";
+    }
+  };
+
+  const renderCell = React.useCallback((user: SupplierPlainObject, columnKey: React.Key) => {
+    const cellValue = user[columnKey as keyof SupplierPlainObject];
     switch (columnKey) {
       case "name":
+        console.log("cellValue: ", cellValue);
         return (
           <User
-            avatarProps={{radius: "lg", src: user.avatar}}
+            avatarProps={{radius: "lg", src: "https://i.pravatar.cc/150?u=a042581f4e29026704d"}}
             description={user.email}
             name={cellValue}
           >
@@ -72,27 +93,31 @@ export default function MyTable(props : UserTableProps) {
       case "role":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">{user.team}</p>
+            <p className="text-bold text-sm capitalize">{user.userCategory}</p>
+            {/* <p className="text-bold text-sm capitalize text-default-400">{user.userCategory}</p> */}
           </div>
         );
       case "status":
+        
         return (
-          <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-            {cellValue}
+          <Chip className="capitalize" color={statusColorMap[user.requestStatus]} size="sm" variant="flat">
+            {transformStatusRqToText(user.requestStatus)}
           </Chip>
         );
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EyeIcon />
-              </span>
+            <Tooltip content="Detalles">
+              <Link href={`/supplier/${user.id}`}>
+                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                  <EyeIcon />
+                </span>
+              </Link>
             </Tooltip>
-            <Tooltip content="Edit user">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
+            <Tooltip color="success" content="Aceptar proveedor">
+              <span className="text-lg text-success cursor-pointer active:opacity-50">
+                {/* <EditIcon /> */}
+                <CheckIcon />
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete user">
@@ -116,7 +141,7 @@ export default function MyTable(props : UserTableProps) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={suppliers}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

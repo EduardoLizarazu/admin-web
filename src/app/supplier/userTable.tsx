@@ -37,7 +37,7 @@ enum Status {
 export default function UserTable(params: UserTableProps) {
   const suppliers = params.suppliers;
 
-  const acceptRequest = async (id: string) =>
+  const acceptRequest = async (id: string ) =>
     await updateStatusRq(id, Status.ACCEPTED);
 
   const rejectRequest = async (id: string) =>
