@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps, getKeyValue} from "@nextui-org/react";
-import {EditIcon} from "app/components/editIcon";
 import {DeleteIcon} from "app/components/deleteIcon";
 import {EyeIcon} from "app/components/eyeIcon";
 import {columns, users} from "app/utils/data";
 import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
 import Link from "next/link";
-import { CheckIcon } from "./checkIcon";
+import { CheckIcon } from "../../components/checkIcon";
 
 ////// This is the code that you need to modify //////
 
@@ -52,8 +51,6 @@ const statusColorMap: Record<string, ChipProps["color"]>  = {
   0: "warning",
 };
 
-type User = typeof users[0];
-
 export default function MyTable(props : UserTableProps) {
   const suppliers : SupplierPlainObject[] = props.suppliers;
 
@@ -80,7 +77,6 @@ export default function MyTable(props : UserTableProps) {
     const cellValue = user[columnKey as keyof SupplierPlainObject];
     switch (columnKey) {
       case "name":
-        console.log("cellValue: ", cellValue);
         return (
           <User
             avatarProps={{radius: "lg", src: "https://i.pravatar.cc/150?u=a042581f4e29026704d"}}

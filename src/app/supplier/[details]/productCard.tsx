@@ -47,10 +47,6 @@ export default function ProductCard(props: any) {
         />
       </CardBody>
       <CardFooter className="text-small justify-between" >
-        {/* <div className="flex justify-between items-center mt-2">
-          <p className="text-default-900 font-bold">${product.price}</p>
-          <p className="text-default-500">{product.stock}</p>
-        </div> */}
         <b>{product.price}$</b>
         <p className="text-default-500">Stock: {product.stock}</p>
       </CardFooter>
