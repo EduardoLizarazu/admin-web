@@ -48,6 +48,7 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
       >
         Volver Atrás
       </button>
+      <h1 className="text-2xl font-bold mb-6">Informacion</h1>
       <div className="bg-white shadow-md rounded-lg p-6">
         <div className="flex items-center space-x-4 mb-4">
           <Image
@@ -111,6 +112,7 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
           </p>
         </div>
       </div>
+      <h2 className="text-2xl font-bold mb-6 mt-6">Productos</h2>
       <div className="bg-white shadow-md rounded-lg p-6">
         <ProductCard />
       </div>
