@@ -1,5 +1,11 @@
 "use client";
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Image,
+  CardFooter,
+} from "@nextui-org/react";
 // import Image from "next/image";
 
 export default function ProductCard(props: any) {
@@ -39,11 +45,15 @@ export default function ProductCard(props: any) {
           src="https://nextui.org/images/hero-card-complete.jpeg"
           width={270}
         />
-        <div className="flex justify-between items-center mt-2">
-          <p className="text-default-900 font-bold">${product.price}</p>
-          <p className="text-default-500">Stock: {product.stock}</p>
-        </div>
       </CardBody>
+      <CardFooter className="text-small justify-between" >
+        {/* <div className="flex justify-between items-center mt-2">
+          <p className="text-default-900 font-bold">${product.price}</p>
+          <p className="text-default-500">{product.stock}</p>
+        </div> */}
+        <b>{product.price}$</b>
+        <p className="text-default-500">Stock: {product.stock}</p>
+      </CardFooter>
     </Card>
   );
 }
