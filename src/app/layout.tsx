@@ -4,6 +4,8 @@ import { Header } from "app/app/Header";
 import { Footer } from "app/app/Footer";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const inter = Inter({ subsets: ["latin"]});
