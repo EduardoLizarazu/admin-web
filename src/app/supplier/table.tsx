@@ -4,12 +4,19 @@ import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps, getKeyValue} from "@nextui-org/react";
 import {DeleteIcon} from "app/components/deleteIcon";
 import {EyeIcon} from "app/components/eyeIcon";
-import {columns} from "app/utils/data";
 import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
 import Link from "next/link";
 import { CheckIcon } from "../../components/checkIcon";
 
 ////// This is the code that you need to modify //////
+
+const columns = [
+  {name: "NOMBRE", uid: "name"},
+  {name: "ROL", uid: "role"},
+  {name: "ESTADOS", uid: "status"},
+  {name: "ACCIONES", uid: "actions"},
+];
+
 
 interface SupplierPlainObject {
   id: string;
