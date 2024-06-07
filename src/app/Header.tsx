@@ -11,26 +11,26 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
+  const path = usePathname();
+  console.log("PATH: ", path);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState('/dashboard');
+  const [activeItem, setActiveItem] = React.useState(path);
   const menuItems = [
-    {name:"Dashboard", link:"/dashboard"}, 
-    {name:"Consumidor", link:"/consumer"}, 
-    {name:"Proveedor", link:"/supplier"}, 
-    {name:"Log Out", link:"#"},
-    ];
+    { name: "Dashboard", link: "/dashboard" },
+    { name: "Consumidor", link: "/consumer" },
+    { name: "Proveedor", link: "/supplier" },
+    { name: "Log Out", link: "/login" },
+  ];
 
-    const handleClickLinks = (path:string) => {
-        setActiveItem(path); 
-    };
+  const handleClickLinks = (path: string) => {
+    setActiveItem(path);
+  };
 
-    console.log("activeItem", activeItem);
-    
-
-    const activeLinkStyle = "font-semibold text-blue-500";
+  // console.log("activeItem", activeItem);
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -47,26 +47,33 @@ export const Header = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive={activeItem === "/dashboard"}>
-          <Link 
-          onClick={() => {handleClickLinks("/dashboard")} }
-          color={!(activeItem === "/dashboard") ? "foreground" : undefined}
-            href="/dashboard">
+          <Link
+            onClick={() => {
+              handleClickLinks("/dashboard");
+            }}
+            color={!(activeItem === "/dashboard") ? "foreground" : undefined}
+            href="/dashboard"
+          >
             Dashboard
           </Link>
         </NavbarItem>
         <NavbarItem isActive={activeItem === "/consumer"}>
-          <Link 
-           onClick={() => {handleClickLinks("/consumer")} }
-           color={!(activeItem === "/consumer") ? "foreground" : undefined}
-          href="/consumer" 
-          aria-current="page" 
+          <Link
+            onClick={() => {
+              handleClickLinks("/consumer");
+            }}
+            color={!(activeItem === "/consumer") ? "foreground" : undefined}
+            href="/consumer"
+            aria-current="page"
           >
             Consumidores
           </Link>
         </NavbarItem>
         <NavbarItem isActive={activeItem === "/supplier"}>
-          <Link 
-            onClick={() => {handleClickLinks("/supplier")} }
+          <Link
+            onClick={() => {
+              handleClickLinks("/supplier");
+            }}
             color={!(activeItem === "/supplier") ? "foreground" : undefined}
             href="/supplier"
           >
@@ -76,11 +83,11 @@ export const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          <Button as={Link} color="primary" href="/login" variant="flat">
+            Sign Out
           </Button>
         </NavbarItem>
       </NavbarContent>
