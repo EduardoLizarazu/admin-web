@@ -1,14 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import { handleLogin } from "./_actions/handleLogin";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("ex02@gmail.com");
+  const [password, setPassword] = useState("Passw0rd");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     // Aquí podrías agregar la lógica para manejar el inicio de sesión
     console.log("Login attempt:", email, password);
+    const result = await handleLogin(email, password);
   };
 
   return (
@@ -45,11 +47,11 @@ export default function LoginForm() {
             id="password"
             name="password"
             type="password"
-            autoComplete="current-password"
+            // autoComplete="current-password"
             required
             className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             value={password}
-            onChange={(e: any) => setPassword(e.target)}
+            onChange={(e: any) => setPassword(e.target.value)}
           />
         </div>
       </div>
