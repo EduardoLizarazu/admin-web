@@ -70,14 +70,14 @@ export default function MyTable(props : UserTableProps) {
         return (
           <div className="flex flex-col">
             <p className="text-bold text-sm">{user.phone}</p>
-            {/* <p className="text-bold text-sm text-default-400">{user.phone}</p> */}
+            {/* <p className="text-bold text-sm text-default-400">Bolivia, SC</p> */}
           </div>
         );
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
             <Tooltip content="Detalles">
-              <Link href={`/supplier/${user.id}`}>
+              <Link href={`/consumer/${user.id}`}>
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                   <EyeIcon />
                 </span>
