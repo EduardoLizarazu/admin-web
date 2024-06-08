@@ -1,6 +1,5 @@
 import { getSuppliers } from "app/services/admin/supplier/getSuppliers";
 import Link from "next/link";
-import UserTable from "./userTable";
 import MyTable from "./table";
 
 export default async function Supplier() {

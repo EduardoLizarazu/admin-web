@@ -34,4 +34,20 @@ export class ConsumerModel implements IConsumer {
         this.condominium = consumer.condominium;
 
     }
+
+    toPlainObject() {
+        return {
+            id: this.id,
+            name: this.name,
+            lastName: this.lastName,
+            email: this.email,
+            registerDate: this.registerDate.toISOString(),
+            phone: this.phone,
+            birthDate: this.birthDate.toISOString(),
+            profilePicture: this.profilePicture,
+            apartmentNumber: this.apartmentNumber,
+            userCategory: this.userCategory,
+            condominium: this.condominium,
+        }
+    }
 }
