@@ -12,10 +12,12 @@ import {
   Button,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import { SignOut } from "app/services/auth/signout";
 
 export const Header = () => {
   const path = usePathname();
-  console.log("PATH: ", path);
+
+  
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(path);
@@ -30,7 +32,15 @@ export const Header = () => {
     setActiveItem(path);
   };
 
-  // console.log("activeItem", activeItem);
+  const handleSignOut = async () => {
+    await SignOut();
+  }
+
+
+  if (path === "/login") {
+    return <div></div>;
+  }
+  
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -86,7 +96,7 @@ export const Header = () => {
           <Link href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/login" variant="flat">
+          <Button as={Link} onClick={handleSignOut} color="primary" href="/login" variant="flat">
             Sign Out
           </Button>
         </NavbarItem>

@@ -1,3 +1,4 @@
+"use server";
 import firebase_app from "app/firebase/config";
 import { signOut, getAuth } from "firebase/auth";
 import { cookies } from "next/headers";
