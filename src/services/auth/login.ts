@@ -18,10 +18,10 @@ export const LogIn = async (email: string, password: string) => {
       const user = userCredential.user;
       const token = await user.getIdToken();
       cookiesStore.set("accessToken", token, {
-        path: "/",
-        expires: new Date().getMinutes() + 30,
-        httpOnly: true,
-        sameSite: "strict",
+        // path: "/",
+        // expires: (new Date().getMinutes() + 30).toString(),
+        // httpOnly: true,
+        // sameSite: "strict",
       });
       result = { user, token };
     }

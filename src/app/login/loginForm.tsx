@@ -1,61 +1,52 @@
 "use client";
 import React, { useState } from "react";
 import { handleLogin } from "./_actions/handleLogin";
+import { Input } from "@nextui-org/react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("ex02@gmail.com");
   const [password, setPassword] = useState("Passw0rd");
 
+  const [logInError, setlogInError] = useState(false);
+
+  const validateEmail = (email:string) => email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    // Aquí podrías agregar la lógica para manejar el inicio de sesión
     console.log("Login attempt:", email, password);
     const result = await handleLogin(email, password);
+    if (!result) {
+      setlogInError(!result);
+    }
   };
+
+  const isInvalid = React.useMemo(() => {
+    if (email === "") return false;
+
+    validateEmail(email) ? false : true;
+  }, [email]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Email
-        </label>
-        <div className="mt-1">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-      </div>
-      <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Password
-        </label>
-        <div className="mt-1">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            // autoComplete="current-password"
-            required
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            value={password}
-            onChange={(e: any) => setPassword(e.target.value)}
-          />
-        </div>
-      </div>
-
+      <Input
+        value={email}
+        size={"md"}
+        variant="bordered"
+        onValueChange={setEmail}
+        type="email"
+        label="Correo"
+        errorMessage="Please enter a valid email"
+        isInvalid={isInvalid}
+        color={isInvalid ? "danger" : "default"}
+      />
+      <Input
+        value={password}
+        size={"md"}
+        variant="bordered"
+        onValueChange={setPassword}
+        type="password"
+        label="Contraseña"
+      />
       <div>
         <button
           type="submit"
