@@ -25,6 +25,7 @@ export const Header = () => {
     { name: "Dashboard", link: "/dashboard" },
     { name: "Consumidor", link: "/consumer" },
     { name: "Proveedor", link: "/supplier" },
+    { name: "Membresia", link: "/membership" },
     { name: "Log Out", link: "/login" },
   ];
 
@@ -88,6 +89,17 @@ export const Header = () => {
             href="/supplier"
           >
             Proveedores
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive={activeItem === "/membership"}>
+          <Link
+            onClick={() => {
+              handleClickLinks("/membership");
+            }}
+            color={!(activeItem === "/membership") ? "foreground" : undefined}
+            href="/membership"
+          >
+            Membresía
           </Link>
         </NavbarItem>
       </NavbarContent>
