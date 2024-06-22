@@ -11,7 +11,7 @@ export const handleLogin = async (email:string, password: string) => {
     console.log(result?.token);
     
     if(result){
-        redirect('/dashboard')
+        redirect('/supplier')
     } 
     return false;
   }

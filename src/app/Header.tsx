@@ -51,12 +51,12 @@ export const Header = () => {
         />
         <NavbarBrand>
           {/* <AcmeLogo /> */}
-          <p className="font-bold text-inherit">SERGIS</p>
+          <p className="font-bold text-inherit">TUCONDOMINIO</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive={activeItem === "/dashboard"}>
+        {/* <NavbarItem isActive={activeItem === "/dashboard"}>
           <Link
             onClick={() => {
               handleClickLinks("/dashboard");
@@ -66,7 +66,7 @@ export const Header = () => {
           >
             Dashboard
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem isActive={activeItem === "/consumer"}>
           <Link
             onClick={() => {

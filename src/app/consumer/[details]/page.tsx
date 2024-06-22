@@ -1,5 +1,5 @@
 "use client";
-import { getSupplier } from "app/services/admin/supplier/getSuppliers";
+import { getConsumer } from "app/services/admin/consumer/getConsumers";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -7,24 +7,24 @@ interface Params {
   details: string;
 }
 
-interface SupplierDetailsProps {
+interface ConsumerDetailsProps {
   params: Params;
 }
 
-export default function SupplierDetails(props: SupplierDetailsProps) {
+export default function ConsumerDetails(props: ConsumerDetailsProps) {
   const { details } = props.params;
-  const [supplier, setSupplier] = useState<any>(null);
+  const [consumer, setConsumer] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (details) {
-      getSupplier(details)
+      getConsumer(details)
         .then((data) => {
-          setSupplier(data);
+          setConsumer(data);
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Failed to fetch supplier details:", error);
+          console.error("Failed to fetch consumer details:", error);
           setLoading(false);
         });
     }
@@ -34,24 +34,21 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
     return <div>Loading...</div>;
   }
 
-  if (!supplier) {
+  if (!consumer) {
     return <div>No consumer data found.</div>;
   }
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-6">Detalles del Proveedor</h1>
-      <button
-        onClick={() => window.history.back()}
-        className="mb-4 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-      >
+      <h1 className="text-2xl font-bold text-center mb-6">Detalles del Consumidor</h1>
+      <button onClick={() => window.history.back()} className="mb-4 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
         Volver Atrás
       </button>
-      <h1 className="text-2xl font-bold mb-6">Informacion</h1>
       <div className="bg-white shadow-md rounded-lg p-6">
         <div className="flex items-center space-x-4 mb-4">
           <Image
-            src={`/perfil.png`}
+            // src={consumer.profilePicture || "/perfil.png"} // Fallback to a default image if none provided
+            src={ "/perfil.png"} // Fallback to a default image if none provided
             width={96}
             height={96}
             alt="Profile"
@@ -59,56 +56,19 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
           />
           <div>
             <h2 className="text-xl font-semibold">
-              {supplier.name} {supplier.lastName}
+              {consumer.name} {consumer.lastName}
             </h2>
-            <p className="text-sm text-gray-600">{supplier.email}</p>
+            <p className="text-sm text-gray-600">{consumer.email}</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <p>
-            <strong>ID:</strong> {supplier.id}
-          </p>
-          <p>
-            <strong>Phone:</strong> {supplier.phone}
-          </p>
-          <p>
-            <strong>Register Date:</strong>{" "}
-            {new Date(supplier.registerDate).toLocaleDateString()}
-          </p>
-          <p>
-            <strong>Birth Date:</strong>{" "}
-            {new Date(supplier.birthDate).toLocaleDateString()}
-          </p>
-          <p>
-            <strong>User Category:</strong> {supplier.userCategory}
-          </p>
-          <p>
-            <strong>NIT:</strong> {supplier.nit}
-          </p>
-          <p>
-            <strong>Company:</strong> {supplier.companyName}
-          </p>
-          <p>
-            <strong>Company Address:</strong> {supplier.companyAddress}
-          </p>
-          <p>
-            <strong>Company Phone:</strong> {supplier.companyPhone}
-          </p>
-          <p>
-            <strong>Manager Email:</strong> {supplier.companyManagerEmail}
-          </p>
-          <p>
-            <strong>License Type:</strong> {supplier.licenseType}
-          </p>
-          <p>
-            <strong>Certificate Type:</strong> {supplier.certificateType}
-          </p>
-          <p>
-            <strong>Request Status:</strong> {supplier.requestStatus}
-          </p>
-          <p>
-            <strong>Offers:</strong> {supplier.companyOffers.join(", ")}
-          </p>
+          <p><strong>ID:</strong> {consumer.id}</p>
+          <p><strong>Phone:</strong> {consumer.phone}</p>
+          <p><strong>Register Date:</strong> {new Date(consumer.registerDate).toLocaleDateString()}</p>
+          <p><strong>Birth Date:</strong> {new Date(consumer.birthDate).toLocaleDateString()}</p>
+          <p><strong>User Category:</strong> {consumer.userCategory}</p>
+          <p><strong>Apartment Number:</strong> {consumer.apartmentNumber}</p>
+          <p><strong>Condominium:</strong> {consumer.condominium}</p>
         </div>
       </div>
     </div>
