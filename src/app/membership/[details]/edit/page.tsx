@@ -177,7 +177,7 @@ export default function MembershipCreatePage() {
       </Table>
         </CardBody>
         <CardFooter>
-          <Button fullWidth color="primary" onClick={handleEdition}>Crear Membresía</Button>
+          <Button fullWidth color="primary" onClick={handleEdition}>Editar Membresía</Button>
         </CardFooter>
       </Card>
       
