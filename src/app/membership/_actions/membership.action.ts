@@ -1,5 +1,5 @@
 "use server";
-import { getMembershipTypes, deleteMembershipType } from "app/services/admin/payment/membershipType.service";
+import { getMembershipTypes, deleteMembershipType, editMembershipTypeStatus } from "app/services/admin/payment/membershipType.service";
 
 
 // Obtener memberships de firebase
@@ -14,4 +14,9 @@ return responsePrimitive;
 // Eliminar membership de firebase
 export const deleteMembershipTypeAction = async (id: string) => {
   await deleteMembershipType(id);
+};
+
+// Editar estado
+export const editMembershipTypeStatusAction = async (id: string, status: number) => {
+  await editMembershipTypeStatus(id, status);
 };

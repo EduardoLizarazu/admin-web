@@ -7,6 +7,7 @@ export interface IMembershipTypePrimitive {
     price: number;
     duration: number; // Days
     details: string;
+    status: number;
 }
 
 export class MembershipTypeEntity implements IMembershipTypePrimitive {
@@ -16,6 +17,7 @@ export class MembershipTypeEntity implements IMembershipTypePrimitive {
     price: number;
     duration: number;
     details: string;
+    status: number;
 
     constructor(data: IMembershipTypePrimitive) {
         this.id = data.id;
@@ -24,6 +26,7 @@ export class MembershipTypeEntity implements IMembershipTypePrimitive {
         this.price = data.price;
         this.duration = data.duration;
         this.details = data.details;
+        this.status = data.status;
     }
 
     transformDuration() {
@@ -49,6 +52,7 @@ export class MembershipTypeEntity implements IMembershipTypePrimitive {
             price: this.price,
             duration: this.duration,
             details: this.details,
+            status: this.status
         }
     }
 

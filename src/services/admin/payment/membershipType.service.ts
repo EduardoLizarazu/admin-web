@@ -19,7 +19,8 @@ export const getMembershipTypes  = async () => {
             description,
             price,
             duration,
-            details
+            details,
+            status
         } = doc.data();
 
         const membershipType = new MembershipTypeEntity({
@@ -28,7 +29,8 @@ export const getMembershipTypes  = async () => {
             description: description,
             price: price,
             duration: duration,
-            details: details
+            details: details,
+            status: status
         });
 
         return membershipType;
@@ -49,7 +51,8 @@ export const getMembershipType = async (id: string) => {
             description,
             price,
             duration,
-            details
+            details,
+            status
         } = docSnap.data();
 
         const membershipType = new MembershipTypeEntity({
@@ -58,7 +61,8 @@ export const getMembershipType = async (id: string) => {
             description: description,
             price: price,
             duration: duration,
-            details: details
+            details: details,
+            status: status
         });
 
         return membershipType;
@@ -73,6 +77,19 @@ export const editMembershipType = async (membershipType: MembershipTypeEntity) =
         await setDoc(
             doc(db, consumerCollection, membershipType.id), 
             membershipType.toPrimitive()
+        );
+    } catch (error) {
+        console.error("Error updating document: ", error);
+    }
+}
+
+// Editar estado
+export const editMembershipTypeStatus = async (id: string, status: number) => {
+    try {
+        await setDoc(
+            doc(db, consumerCollection, id), 
+            { status: status }, 
+            { merge: true }
         );
     } catch (error) {
         console.error("Error updating document: ", error);
@@ -97,3 +114,4 @@ export const deleteMembershipType = async (id: string) => {
         console.error("Error removing document: ", error);
     }
 }
+

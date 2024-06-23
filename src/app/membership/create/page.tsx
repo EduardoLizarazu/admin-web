@@ -50,12 +50,13 @@ export default function MembershipCreatePage() {
 
   const handleCreation = async () => {
     const membershipPrimitive = {
-      id: "0",
+      id: "dummy-id",
       type: type,
       description: description,
       price: parseFloat(price),
       duration: parseInt(duration),
       details: transformDetails(details),
+      status : 0,
     };
     const membershipEntity = MembershipTypeEntity.create(membershipPrimitive);
 

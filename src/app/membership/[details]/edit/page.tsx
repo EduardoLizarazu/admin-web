@@ -54,6 +54,7 @@ export default function MembershipCreatePage() {
       price: parseFloat(price),
       duration: parseInt(duration),
       details: transformDetails(details),
+      status : 0,
     };
     const membershipEntity = MembershipTypeEntity.create(membershipPrimitive);
 

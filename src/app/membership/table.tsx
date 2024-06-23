@@ -14,7 +14,8 @@ import React from "react";
 import { DeleteIcon } from "app/components/deleteIcon";
 import { EditIcon } from "app/components/editIcon";
 import { EyeIcon } from "app/components/eyeIcon";
-import { getMembershipTypesAction, deleteMembershipTypeAction } from "./_actions/membership.action";
+import { getMembershipTypesAction, deleteMembershipTypeAction, editMembershipTypeStatusAction } from "./_actions/membership.action";
+import { CheckIcon } from "app/components/checkIcon";
 
 export default function TableMembership() {
 
@@ -42,10 +43,23 @@ export default function TableMembership() {
     }
   }
 
+  // Editar status
+  const handleEditStatus = async (id: string, status: number) => {
+    try {
+      await editMembershipTypeStatusAction(id, status);
+      handleGetMembershipTypes();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   React.useEffect(() => {
     handleGetMembershipTypes();
   }, []);
   
+  const transformStatus = (status: number) => {
+    return (status === 0) ? "Inactivo" : "Activo";
+  }
 
   const transformDuration = (duration: number) => {
     if (duration === 0) {
@@ -60,6 +74,7 @@ export default function TableMembership() {
         <TableColumn>Description</TableColumn>
         <TableColumn>Price</TableColumn>
         <TableColumn>Duration</TableColumn>
+        <TableColumn>Estado</TableColumn>
         <TableColumn>Acciones</TableColumn>
       </TableHeader>
       <TableBody>
@@ -69,8 +84,10 @@ export default function TableMembership() {
             <TableCell>{membership.description}</TableCell>
             <TableCell>${membership.price}</TableCell>
             <TableCell>{transformDuration(membership.duration)}</TableCell>
+            <TableCell>{transformStatus(membership.status)}</TableCell>
             <TableCell>
             <div className="relative flex items-center gap-2">
+
               {/* <Tooltip content="Detalles">
                 <Link href={`/membership/${membership.id}/read`}>
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
@@ -78,6 +95,16 @@ export default function TableMembership() {
                   </span>
                 </Link>
               </Tooltip> */}
+              <Tooltip color="success" content="activar">
+              <span className="text-lg text-success cursor-pointer active:opacity-50">
+                <CheckIcon onClick={() => handleEditStatus(membership.id, 1)} />
+              </span>
+            </Tooltip>
+            <Tooltip color="danger" content="desactivar">
+              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                <DeleteIcon onClick={() => handleEditStatus(membership.id, 0)} />
+              </span>
+            </Tooltip>
               <Tooltip content="Editar">
                 <Link href={`/membership/${membership.id}/edit`}>
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
