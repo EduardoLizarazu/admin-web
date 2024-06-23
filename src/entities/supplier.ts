@@ -1,4 +1,4 @@
-interface ISupplier extends IUser {
+interface ISupplierPrimitive extends IUser {
     nit: string;
     companyName: string;
     companyAddress: string;
@@ -7,10 +7,9 @@ interface ISupplier extends IUser {
     licenseType : string;
     certificateType : string;
     requestStatus: number;
-    companyOffers: string[];
 }
 
-export class SupplierModel implements ISupplier {
+export class SupplierModel implements ISupplierPrimitive {
     id: string;
     name: string;
     lastName: string;
@@ -28,10 +27,9 @@ export class SupplierModel implements ISupplier {
     licenseType : string;
     certificateType : string;
     requestStatus: number;
-    companyOffers: string[];
 
     constructor (
-        supplier: ISupplier
+        supplier: ISupplierPrimitive
     ) {
         this.id = supplier.id;
         this.name = supplier.name;
@@ -49,7 +47,6 @@ export class SupplierModel implements ISupplier {
         this.companyManagerEmail = supplier.companyManagerEmail;
         this.licenseType = supplier.licenseType;
         this.certificateType = supplier.certificateType;
-        this.companyOffers = supplier.companyOffers;
         this.requestStatus = supplier.requestStatus;
     }
 
@@ -71,7 +68,6 @@ export class SupplierModel implements ISupplier {
             companyManagerEmail: this.companyManagerEmail || "",
             licenseType: this.licenseType || "",
             certificateType: this.certificateType || "",
-            companyOffers: this.companyOffers || [],
             requestStatus: this.requestStatus || 0,
         };
     }

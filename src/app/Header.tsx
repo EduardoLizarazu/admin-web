@@ -26,6 +26,7 @@ export const Header = () => {
     { name: "Consumidor", link: "/consumer" },
     { name: "Proveedor", link: "/supplier" },
     { name: "Membresia", link: "/membership" },
+    { name: "Producto", link: "/product" },
     { name: "Log Out", link: "/login" },
   ];
 
@@ -57,17 +58,6 @@ export const Header = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {/* <NavbarItem isActive={activeItem === "/dashboard"}>
-          <Link
-            onClick={() => {
-              handleClickLinks("/dashboard");
-            }}
-            color={!(activeItem === "/dashboard") ? "foreground" : undefined}
-            href="/dashboard"
-          >
-            Dashboard
-          </Link>
-        </NavbarItem> */}
         <NavbarItem isActive={activeItem === "/consumer"}>
           <Link
             onClick={() => {
@@ -100,6 +90,17 @@ export const Header = () => {
             href="/membership"
           >
             Membresía
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive={activeItem === "/product"}>
+          <Link
+            onClick={() => {
+              handleClickLinks("/product");
+            }}
+            color={!(activeItem === "/product") ? "foreground" : undefined}
+            href="/product"
+          >
+            Producto
           </Link>
         </NavbarItem>
       </NavbarContent>
