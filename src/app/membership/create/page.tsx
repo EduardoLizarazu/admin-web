@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ReactElement } from "react";
 import { Input, Textarea, Button, Card } from "@nextui-org/react";
 import {
   Table,
@@ -18,18 +18,34 @@ export default function MembershipCreatePage() {
   const [description, setDescription] = React.useState<string>("");
   const [price, setPrice] = React.useState<string>("");
   const [duration, setDuration] = React.useState<string>("");
-  const [details, setDetails] = React.useState<string>("");
+  const [details, setDetails] = React.useState<string[]>([""]);
 
-  const dummyMembership = {
-    type: "Free",
-    description: "Access to basic features",
-    price: 0,
-    duration: 0,
-    details: `
-      - Free membership details
-      - 1 user
-      - 3 projects
-    `,
+  // const dummyMembership = {
+  //   type: "Free",
+  //   description: "Access to basic features",
+  //   price: 0,
+  //   duration: 0,
+  //   details: `
+  //     - Free membership details
+  //     - 1 user
+  //     - 3 projects
+  //   `,
+  // };
+
+  const handleDetailChange = (index:any, value:any) => {
+    const newDetails = [...details];
+    newDetails[index] = value;
+    setDetails(newDetails);
+  };
+
+  const addDetail = () => {
+    setDetails([...details, ""]); // Agrega un nuevo detalle vacío al arreglo
+  };
+
+  const removeDetail = (index:any) => {
+    const newDetails = [...details];
+    newDetails.splice(index, 1);
+    setDetails(newDetails);
   };
 
   const handleCreation = async () => {
@@ -39,12 +55,16 @@ export default function MembershipCreatePage() {
       description: description,
       price: parseFloat(price),
       duration: parseInt(duration),
-      details: details,
+      details: transformDetails(details),
     };
     const membershipEntity = MembershipTypeEntity.create(membershipPrimitive);
 
     await createMembershipTypeAction(membershipEntity);
   };
+
+  const transformDetails = (details: string[]) => {
+    return details.map(item => `- ${item}`).join('\n');
+  }
 
   return (
     <div className="w-full h-screen overflow-x-hidden border-t flex flex-col px-4 sm:px-8 md:px-16">
@@ -55,7 +75,7 @@ export default function MembershipCreatePage() {
           <TableColumn>INPUT</TableColumn>
         </TableHeader>
         <TableBody>
-          <TableRow key="1">
+          <TableRow key="-1">
             <TableCell>Tipo:</TableCell>
             <TableCell>
               <Input
@@ -107,19 +127,27 @@ export default function MembershipCreatePage() {
               />
             </TableCell>
           </TableRow>
-          <TableRow key="5">
+          <TableRow key={5}>
             <TableCell>Detalles:</TableCell>
             <TableCell>
-              <Input
-                isClearable
-                label="Detalles"
-                fullWidth
-                value={details}
-                name="details"
-                onChange={(e) => setDetails(e.target.value)}
-              />
+              <Button onClick={addDetail}>Agregar Detalle</Button>
+              {details.map((detail, index) => (
+                <div key={index}>
+                  <Input
+                    isClearable
+                    label="Detalle"
+                    fullWidth
+                    value={detail}
+                    name="detail"
+                    onChange={(e) => handleDetailChange(index, e.target.value)}
+                  />
+                  <Button onClick={() => removeDetail(index)}>Eliminar</Button>
+                </div>
+              ))}
             </TableCell>
           </TableRow>
+
+          
         </TableBody>
       </Table>
     </div>
