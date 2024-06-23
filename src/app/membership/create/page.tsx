@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactElement } from "react";
-import { Input, Textarea, Button, Card } from "@nextui-org/react";
+import { Input, Textarea, Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import {
   Table,
   TableHeader,
@@ -68,8 +68,19 @@ export default function MembershipCreatePage() {
 
   return (
     <div className="w-full h-screen overflow-x-hidden border-t flex flex-col px-4 sm:px-8 md:px-16">
-      <h1>Membership Create Page</h1>
-      <Table isStriped>
+      <button
+        onClick={() => window.history.back()}
+        className="mb-4 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+      >
+        Volver Atrás
+      </button>
+      
+      <Card>
+        <CardHeader>
+        <h1>Membership Create Page</h1>
+        </CardHeader>
+        <CardBody>
+        <Table>
         <TableHeader>
           <TableColumn>FORM</TableColumn>
           <TableColumn>INPUT</TableColumn>
@@ -130,26 +141,29 @@ export default function MembershipCreatePage() {
           <TableRow key={5}>
             <TableCell>Detalles:</TableCell>
             <TableCell>
-              <Button onClick={addDetail}>Agregar Detalle</Button>
+              <Button className="mt-2 mb-2" fullWidth color="secondary" onClick={addDetail}>Agregar Detalle</Button>
               {details.map((detail, index) => (
-                <div key={index}>
+                <div key={index} className="mt-4">
                   <Input
-                    isClearable
-                    label="Detalle"
+                    label={`Detalle ${index + 1}`}
                     fullWidth
                     value={detail}
                     name="detail"
                     onChange={(e) => handleDetailChange(index, e.target.value)}
+                    endContent={<Button onClick={() => removeDetail(index)}>Eliminar</Button>}
                   />
-                  <Button onClick={() => removeDetail(index)}>Eliminar</Button>
                 </div>
               ))}
             </TableCell>
           </TableRow>
-
-          
         </TableBody>
       </Table>
+        </CardBody>
+        <CardFooter>
+          <Button fullWidth color="primary" onClick={handleCreation}>Crear Membresía</Button>
+        </CardFooter>
+      </Card>
+      
     </div>
   );
 }
