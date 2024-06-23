@@ -82,8 +82,8 @@ export const editMembershipType = async (membershipType: MembershipTypeEntity) =
 // Crear
 export const createMembershipType = async (membershipType: MembershipTypeEntity) => {
     try {
-        await addDoc(collection(db, consumerCollection), membershipType.toPrimitive()
-        );
+        const docRef = await addDoc(collection(db, consumerCollection), membershipType.toPrimitive());
+        await setDoc(docRef, { id: docRef.id }, { merge: true });
     } catch (error) {
         console.error("Error adding document: ", error);
     }

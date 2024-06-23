@@ -10,59 +10,42 @@ import {
   Tooltip,
   Link,
 } from "@nextui-org/react";
+import React from "react";
 import { DeleteIcon } from "app/components/deleteIcon";
 import { EditIcon } from "app/components/editIcon";
 import { EyeIcon } from "app/components/eyeIcon";
+import { getMembershipTypesAction, deleteMembershipTypeAction } from "./_actions/membership.action";
 
 export default function TableMembership() {
 
-  interface IMembershipDetails {
-    id : string;
-    type: string;
-    description: string;
-    price: number;
-    duration: number; // Days
-    details: string;
+  const [membershipTypes, setMembershipTypes] = React.useState<any>([]);
+
+  // Get membership types
+  const handleGetMembershipTypes = async () => {
+    try {
+      const response = await getMembershipTypesAction();
+      setMembershipTypes(response);
+      console.log(response);
+      
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  const membershipTypes : IMembershipDetails[] = [
-    {
-      id: "1",
-      type: "Free",
-      description: "Access to basic features",
-      price: 0,
-      duration: 0,
-      details: `
-        - Free membership details
-        - 1 user
-        - 3 projects
-      `,
-    },
-    {
-      id: "2",
-      type: "Individual",
-      description: "Full access for one person",
-      price: 99,
-      duration: 360,
-      details: `
-        - Individual membership details
-        - 1 user
-        - Unlimited projects
-      `,
-    },
-    {
-      id: "3",
-      type: "Organization",
-      description: "Team access for up to 10 users",
-      price: 299,
-      duration: 360,
-      details: `
-        - Organization membership details
-        - 10 users
-        - Unlimited projects
-      `,
-    },
-  ];
+  // Remove membership type
+  const handleRemoveMembershipType = async (id: string) => {
+    try {
+      await deleteMembershipTypeAction(id);
+      handleGetMembershipTypes();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    handleGetMembershipTypes();
+  }, []);
+  
 
   const transformDuration = (duration: number) => {
     if (duration === 0) {
@@ -80,7 +63,7 @@ export default function TableMembership() {
         <TableColumn>Acciones</TableColumn>
       </TableHeader>
       <TableBody>
-        {membershipTypes.map((membership, index) => (
+        {membershipTypes.map((membership :any , index:any) => (
           <TableRow key={index}>
             <TableCell>{membership.type}</TableCell>
             <TableCell>{membership.description}</TableCell>
@@ -104,7 +87,9 @@ export default function TableMembership() {
               </Tooltip>
               <Tooltip content="Eliminar">
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                    <DeleteIcon />
+                    <button onClick={() => handleRemoveMembershipType(membership.id)}>
+                      <DeleteIcon />
+                    </button>
                   </span>
               </Tooltip>
             </div>
