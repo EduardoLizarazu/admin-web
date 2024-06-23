@@ -71,13 +71,13 @@ export default function TableMembership() {
             <TableCell>{transformDuration(membership.duration)}</TableCell>
             <TableCell>
             <div className="relative flex items-center gap-2">
-              <Tooltip content="Detalles">
+              {/* <Tooltip content="Detalles">
                 <Link href={`/membership/${membership.id}/read`}>
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                     <EyeIcon />
                   </span>
                 </Link>
-              </Tooltip>
+              </Tooltip> */}
               <Tooltip content="Editar">
                 <Link href={`/membership/${membership.id}/edit`}>
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
