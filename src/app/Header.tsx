@@ -25,8 +25,9 @@ export const Header = () => {
     { name: "Dashboard", link: "/dashboard" },
     { name: "Consumidor", link: "/consumer" },
     { name: "Proveedor", link: "/supplier" },
-    { name: "Membresia", link: "/membership" },
+    { name: "Membresía", link: "/membership" },
     { name: "Producto", link: "/product" },
+    { name: "Ordenar Producto", link: "/orderProduct" },
     { name: "Log Out", link: "/login" },
   ];
 
@@ -92,7 +93,7 @@ export const Header = () => {
             Membresía
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={activeItem === "/product"}>
+        {/* <NavbarItem isActive={activeItem === "/product"}>
           <Link
             onClick={() => {
               handleClickLinks("/product");
@@ -102,7 +103,18 @@ export const Header = () => {
           >
             Producto
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
+        {/* <NavbarItem isActive={activeItem === "/orderProduct"}>
+          <Link
+            onClick={() => {
+              handleClickLinks("/orderProduct");
+            }}
+            color={!(activeItem === "/orderProduct") ? "foreground" : undefined}
+            href="/orderProduct"
+          >
+            Ordenar Producto
+          </Link>
+        </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
