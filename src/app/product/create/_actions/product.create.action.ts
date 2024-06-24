@@ -3,7 +3,7 @@
 import { IProductPrimitive, ProductEntity } from "app/entities/product/product.entity";
 import { createProduct } from "app/services/product/product.service";
 import { getAccessToken, decodeJWT } from "app/utils/index.utils";
-
+import { productCategory } from "app/utils/constants.utils";
 
 export const createProductAction = async (product : IProductPrimitive) => {
     try {
@@ -24,4 +24,9 @@ export const getTokenDecodedAction = async () => {
     }
     
     return null;
+}
+
+export const getProductCategoryAction = () => {
+    const productCategoryPrimitive = productCategory;
+    return productCategoryPrimitive;
 }

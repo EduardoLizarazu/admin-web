@@ -25,9 +25,11 @@ import {
 import {
   createProductAction,
   getTokenDecodedAction,
+  getProductCategoryAction,
 } from "./_actions/product.create.action";
+import { set } from "firebase/database";
 
-import { productCategory } from "app/utils/constants.utils";
+
 
 // id: string;
 //     userId: string;
@@ -37,8 +39,14 @@ import { productCategory } from "app/utils/constants.utils";
 //     price: number;
 //     stock: number;
 //     images: [string];
+interface ProductCategory {
+  id: string;
+  name: string;
+  description: string;
+}
 
 export default function ProductCreatePage() {
+  const [categories, setCategories] = React.useState<ProductCategory[]>();
   const [token, setToken] = React.useState<any>("");
   const [name, setName] = React.useState<string>("");
   const [description, setDescription] = React.useState<string>("");
@@ -61,10 +69,13 @@ export default function ProductCreatePage() {
     await createProductAction(productPrimitive);
   };
 
+  
   React.useEffect(() => {
     (async () => {
       const token = await getTokenDecodedAction();
       setToken(token);
+      const categories = await getProductCategoryAction();
+      setCategories(categories);
     })();
   }, []);
 
@@ -153,11 +164,11 @@ export default function ProductCreatePage() {
                     <DropdownTrigger>
                       <Button variant="bordered">Categoría de productos</Button>
                     </DropdownTrigger>
-                    <DropdownMenu items={productCategory}>
+                    <DropdownMenu items={categories}>
                       {(item) => (
                         <DropdownItem
                           key={item.id}
-                          onClick={() => setCategory(item.name)}
+                          onClick={() => setCategory(item.id)}
                         >
                           {item.name}
                         </DropdownItem>

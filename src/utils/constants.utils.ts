@@ -1,6 +1,12 @@
 
 // Crear una lista dummy de categoria de productos
 
+interface ProductCategory {
+    id: string;
+    name: string;
+    description: string;
+}
+
 export const productCategory = [
     { id: "1", name: "Electrónica", description: "Dispositivos, gadgets y productos relacionados con la tecnología." },
     { id: "2", name: "Ropa", description: "Prendas para hombres, mujeres y niños de todas las edades." },
@@ -13,5 +19,7 @@ export const productCategory = [
     { id: "9", name: "Muebles", description: "Muebles para interiores y exteriores." },
     { id: "10", name: "Automotriz", description: "Accesorios y partes para automóviles." }
   ];
+
+  
   
   
