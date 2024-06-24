@@ -1,5 +1,5 @@
-import { CheckIcon } from "./checkIcon";
-import { CommentsIcon } from "./commentIcon";
+import { CheckIcon } from "./Icons/checkIcon";
+import { CommentsIcon } from "./Icons/commentIcon";
 
 export {
     CheckIcon,

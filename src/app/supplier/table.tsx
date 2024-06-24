@@ -2,11 +2,11 @@
 import React from "react";
 // import Slider from "react-slick";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps, getKeyValue} from "@nextui-org/react";
-import {DeleteIcon} from "app/components/deleteIcon";
-import {EyeIcon} from "app/components/eyeIcon";
+import {DeleteIcon} from "app/components/Icons/deleteIcon";
+import {EyeIcon} from "app/components/Icons/eyeIcon";
 import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
 import Link from "next/link";
-import { CheckIcon } from "../../components/checkIcon";
+import { CheckIcon } from "../../components/Icons/checkIcon";
 
 ////// This is the code that you need to modify //////
 

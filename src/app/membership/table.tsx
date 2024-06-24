@@ -11,11 +11,11 @@ import {
   Link,
 } from "@nextui-org/react";
 import React from "react";
-import { DeleteIcon } from "app/components/deleteIcon";
-import { EditIcon } from "app/components/editIcon";
-import { EyeIcon } from "app/components/eyeIcon";
+import { DeleteIcon } from "app/components/Icons/deleteIcon";
+import { EditIcon } from "app/components/Icons/editIcon";
+import { EyeIcon } from "app/components/Icons/eyeIcon";
 import { getMembershipTypesAction, deleteMembershipTypeAction, editMembershipTypeStatusAction } from "./_actions/membership.action";
-import { CheckIcon } from "app/components/checkIcon";
+import { CheckIcon } from "app/components/Icons/checkIcon";
 
 export default function TableMembership() {
 

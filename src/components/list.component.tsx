@@ -7,14 +7,15 @@ interface ListProps {
   price: number;
   stock: number;
   image: string;
+  link: string;
 }
 
 export default function List(props: ListProps) {
-  const { id, title, description, price, stock, image } = props;
+  const { id, title, description, price, stock, image, link } = props;
 
   return (
     <>
-      <Card as={Link} href={"/orderProduct/" + id}>
+      <Card as={Link} href={link}>
         <div className="w-full mx-auto  p-4 flex bg-white shadow-lg rounded-lg">
           <div className="mr-4" >
             <Image src={image} alt="Product" className="w-full" />

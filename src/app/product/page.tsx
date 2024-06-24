@@ -18,9 +18,9 @@ import {
   Tooltip,
   Link,
 } from "@nextui-org/react";
-import { DeleteIcon } from "app/components/deleteIcon";
-import { EditIcon } from "app/components/editIcon";
-import { EyeIcon } from "app/components/eyeIcon";
+import { DeleteIcon } from "app/components/Icons/deleteIcon";
+import { EditIcon } from "app/components/Icons/editIcon";
+import { EyeIcon } from "app/components/Icons/eyeIcon";
 import { getProductCategoryAction, getProductsAction } from "./_actions/products.action";
 
 // id: string;

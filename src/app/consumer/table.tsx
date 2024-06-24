@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps, getKeyValue} from "@nextui-org/react";
-import {EyeIcon} from "app/components/eyeIcon";
+import {EyeIcon} from "app/components/Icons/eyeIcon";
 import Link from "next/link";
 
 ////// This is the code that you need to modify //////
