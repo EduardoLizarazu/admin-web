@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   Input,
   Textarea,
@@ -20,6 +21,7 @@ import {
 import { DeleteIcon } from "app/components/deleteIcon";
 import { EditIcon } from "app/components/editIcon";
 import { EyeIcon } from "app/components/eyeIcon";
+import { getProductCategoryAction, getProductsAction } from "./_actions/products.action";
 
 // id: string;
 //     userId: string;
@@ -30,40 +32,24 @@ import { EyeIcon } from "app/components/eyeIcon";
 //     stock: number;
 
 export default function ProductPage() {
-  const products = [
-    {
-      id: "1",
-      userId: "user1",
-      category: "electronics",
-      name: "Laptop",
-      description:
-        "High performance laptop suitable for gaming and professional work.",
-      price: 1200.0,
-      stock: 15,
-    },
-    {
-      id: "2",
-      userId: "user2",
-      category: "home appliances",
-      name: "Microwave",
-      description:
-        "Efficient and easy-to-use microwave with pre-programmed settings.",
-      price: 150.0,
-      stock: 30,
-    },
-    {
-      id: "3",
-      userId: "user3",
-      category: "books",
-      name: "JavaScript for Beginners",
-      description:
-        "A comprehensive guide to mastering JavaScript from scratch.",
-      price: 29.99,
-      stock: 50,
-    },
-  ];
-
   
+  const [products, setProducts] = React.useState<any>([]);
+  const [productCategory, setProductCategory] = React.useState<any>([]);
+   
+  const matchCategoryIdToName = (id: string) => {
+    const category = productCategory.find((category: any) => category.id === id);
+    return category?.name;
+  }
+
+  React.useEffect(() => {
+    (async () => {
+      const productActions = await getProductsAction();
+      setProducts(productActions);
+
+      const productCategories = await getProductCategoryAction();
+      setProductCategory(productCategories);
+    })()
+  }, []);
   
   return (
     <div className="w-full h-screen overflow-x-hidden border-t flex flex-col px-4 sm:px-8 md:px-16">
@@ -89,9 +75,9 @@ export default function ProductPage() {
               <TableColumn>ACCIONES</TableColumn>
             </TableHeader>
             <TableBody>
-              {products.map((product) => (
+              {products.map((product:any) => (
                 <TableRow key={product.id}>
-                  <TableCell>{product.category}</TableCell>
+                  <TableCell>{matchCategoryIdToName(product.categoryId)}</TableCell>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>{product.description}</TableCell>
                   <TableCell>${product.price.toFixed(2)}</TableCell>
