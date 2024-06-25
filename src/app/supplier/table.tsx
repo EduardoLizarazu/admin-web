@@ -59,7 +59,7 @@ const statusColorMap: Record<string, ChipProps["color"]>  = {
   0: "warning",
 };
 
-export default function MyTable(props : UserTableProps) {
+export default function MyTable(props : any) {
   const suppliers : SupplierPlainObject[] = props.suppliers;
 
   const acceptRequest = async (id: string) =>
