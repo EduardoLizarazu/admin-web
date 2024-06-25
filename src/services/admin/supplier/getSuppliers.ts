@@ -42,7 +42,6 @@ export const getSuppliers = async () => {
             companyManagerEmail: "",
             licenseType: licenseType,
             certificateType: "",
-            companyOffers: ["FALTA"],
             userCategory: userCategory,
             requestStatus: requestStatus,
         });
@@ -97,7 +96,6 @@ export const getSupplier = async (id: string) => {
             companyManagerEmail: "",
             licenseType: licenseType,
             certificateType: "",
-            companyOffers: ["FALTA"],
             userCategory: userCategory,
             requestStatus: requestStatus,
         });
