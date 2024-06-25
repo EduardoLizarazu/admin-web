@@ -19,7 +19,7 @@ export default async function Supplier() {
           <div className="bg-white overflow-auto rounded-lg">
             {/* TABLE */}
             {/* <UserTable suppliers={plainSuppliers} /> */}
-            <MyTable suppliers={plainSuppliers} />
+            <MyTable  />
           </div>
         </div>
       </div>

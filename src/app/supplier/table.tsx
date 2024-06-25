@@ -7,7 +7,7 @@ import {EyeIcon} from "app/components/Icons/eyeIcon";
 import { updateStatusRq } from "app/services/admin/consumer/updateStatusRq";
 import Link from "next/link";
 import { CheckIcon } from "../../components/Icons/checkIcon";
-
+import { getSuppliers } from "app/services/admin/supplier/getSuppliers";
 ////// This is the code that you need to modify //////
 
 const columns = [
@@ -35,7 +35,6 @@ interface SupplierPlainObject {
   companyManagerEmail: string;
   licenseType: string;
   certificateType: string;
-  companyOffers: string[];
   requestStatus: number;
 }
 
@@ -60,7 +59,8 @@ const statusColorMap: Record<string, ChipProps["color"]>  = {
 };
 
 export default function MyTable(props : any) {
-  const suppliers : SupplierPlainObject[] = props.suppliers;
+  // const suppliers : SupplierPlainObject[] = props.suppliers;
+  const [suppliers, setSuppliers] = React.useState<SupplierPlainObject[]>([]);
 
   const acceptRequest = async (id: string) =>
     await updateStatusRq(id, Status.ACCEPTED);
@@ -134,6 +134,13 @@ export default function MyTable(props : any) {
         return cellValue;
     }
   }, []);
+
+  React.useEffect(() => {
+    (async () => {
+      const suppliers = await getSuppliers();
+      setSuppliers(suppliers.map((supplier) => supplier.toPlainObject()));
+    })()
+  }, [suppliers]);
 
   return (
   <Table aria-label="Example table with custom cells">
