@@ -107,9 +107,6 @@ export default function SupplierDetails(props: SupplierDetailsProps) {
           <p>
             <strong>Request Status:</strong> {supplier.requestStatus}
           </p>
-          <p>
-            <strong>Offers:</strong> {supplier.companyOffers.join(", ")}
-          </p>
         </div>
       </div>
       {/* <h2 className="text-2xl font-bold mb-6 mt-6">Productos</h2>
